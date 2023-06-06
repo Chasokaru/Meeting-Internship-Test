@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -21,24 +22,32 @@ public class MeetingInternshipTestApplication {
     private static final String FILE_NAME = "D:/OPERA FORCED DOWNLOADS/Meeting-Internship-Test/Meeting-Internship-Test/src/main/resources/meetings.json";
 
     public static void main(String[] args) {
-        //Start menu
+        // Start menu
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to the Meeting Management System!");
-
+    
         boolean continueProgram = true;
         while (continueProgram) {
             System.out.println("Please choose an option:");
-            System.out.println("1. Add new employee information");
-            System.out.println("2. Delete an employee information");
-            System.out.println("3. Add employee to existing employee");
+            System.out.println("1. Add new meeting information");
+            System.out.println("2. Delete a meeting information");
+            System.out.println("3. Add employee to existing meeting");
             System.out.println("4. Remove an employee");
             System.out.println("5. Filter employees");
             System.out.println("6. Exit");
             System.out.print("Your choice: ");
-
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline character
-            //Choice for activating one of the functions
+    
+            int choice;
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine(); // Consume newline character
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // Clear the invalid input from the scanner
+                continue;
+            }
+    
+            // Choice for activating one of the functions
             switch (choice) {
                 case 1:
                     addMeeting(scanner);
@@ -63,10 +72,11 @@ public class MeetingInternshipTestApplication {
                     break;
             }
         }
-//Goodbye message
+    
+        // Goodbye message
         System.out.println("Have a nice day. Hope to see you soon.");
     }
-
+    
     private static void filterEmployees(Scanner scanner) {
         List<Employee> employees = readEmployeesFromJson();
     
@@ -433,7 +443,7 @@ public class MeetingInternshipTestApplication {
                     String employeeDescription = scanner.nextLine();
                     emp.setDescription(employeeDescription);
     
-                    System.out.println("Enter employee category (CodeMonkey / Hub / Short / TeamBuilding): ");
+                    System.out.println("Enter meeting category (CodeMonkey / Hub / Short / TeamBuilding): ");
                     String employeeCategory = scanner.nextLine();
                     while (!isValidCategory(employeeCategory)) {
                         System.out.println("Invalid category. Please enter a valid category: ");
@@ -441,7 +451,7 @@ public class MeetingInternshipTestApplication {
                     }
                     emp.setCategory(employeeCategory);
     
-                    System.out.println("Enter employee type (Live / InPerson): ");
+                    System.out.println("Enter meeting type (Live / InPerson): ");
                     String employeeType = scanner.nextLine();
                     while (!isValidType(employeeType)) {
                         System.out.println("Invalid type. Please enter a valid type: ");
@@ -449,7 +459,7 @@ public class MeetingInternshipTestApplication {
                     }
                     emp.setType(employeeType);
     
-                    System.out.println("Enter employee start date (yyyy-mm-dd): ");
+                    System.out.println("Enter meeting start date (yyyy-mm-dd): ");
                     String employeeStartDate = scanner.nextLine();
                     while (!isValidDateFormat(employeeStartDate)) {
                         System.out.println("Invalid date format. Please enter a valid date (yyyy-mm-dd): ");
@@ -457,7 +467,7 @@ public class MeetingInternshipTestApplication {
                     }
                     emp.setStartDate(employeeStartDate);
     
-                    System.out.println("Enter employee start end (yyyy-mm-dd): ");
+                    System.out.println("Enter meeting start end (yyyy-mm-dd): ");
                     String employeeEndDate = scanner.nextLine();
                     while (!isValidDateFormat(employeeEndDate)) {
                         System.out.println("Invalid date format. Please enter a valid date (yyyy-mm-dd): ");
