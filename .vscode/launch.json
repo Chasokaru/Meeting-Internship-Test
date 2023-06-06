@@ -1,0 +1,35 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "MeetingManager",
+            "request": "launch",
+            "mainClass": "com.vismaInternshipTest.MeetingInternshipTest.MeetingManager",
+            "projectName": "Meeting-Internship-Test"
+        },
+        {
+            "type": "java",
+            "name": "MeetingManualDataInput",
+            "request": "launch",
+            "mainClass": "com.vismaInternshipTest.MeetingInternshipTest.MeetingManualDataInput",
+            "projectName": "Meeting-Internship-Test"
+        },
+        {
+            "type": "java",
+            "name": "MeetingAutoInput",
+            "request": "launch",
+            "mainClass": "com.vismaInternshipTest.MeetingInternshipTest.MeetingAutoInput",
+            "projectName": "Meeting-Internship-Test"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MeetingInternshipTestApplication<Meeting-Internship-Test>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.vismaInternshipTest.MeetingInternshipTest.MeetingInternshipTestApplication",
+            "projectName": "Meeting-Internship-Test",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
